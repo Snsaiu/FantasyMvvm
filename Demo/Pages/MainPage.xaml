@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Demo.Pages.MainPage"
+             Title="MainPage"
+             HeightRequest="400"
+             WidthRequest="500"
+             NavigationPage.HasNavigationBar="False"
+              xmlns:fanasy="clr-namespace:FantasyMvvm.FantasyAttachProp;assembly=FantasyMvvm"
+             BackgroundColor="White">
+    <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+
+        <Grid HorizontalOptions="Center" VerticalOptions="Center" WidthRequest="300" RowSpacing="10" ColumnSpacing="5"> 
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="50"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Label GridLayout.Row="0" HorizontalOptions="End" VerticalOptions="Center"  GridLayout.Column="0" Text="用户名:"></Label>
+            <Label GridLayout.Row="1" HorizontalOptions="End" VerticalOptions="Center"  GridLayout.Column="0" Text="密码:"></Label>
+            <Entry GridLayout.Row="0" GridLayout.Column="1" Placeholder="请输入用户名"></Entry>
+            <Entry GridLayout.Row="1" GridLayout.Column="1" Placeholder="请输入密码" IsPassword="True"></Entry>
+            <Button Command="{Binding NextCommand}" GridLayout.Row="2" GridLayout.ColumnSpan="2" Text="登录"></Button>
+        </Grid>
+        
+        
+    </StackLayout>
+</ContentPage>

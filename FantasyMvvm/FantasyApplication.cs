@@ -14,15 +14,28 @@ namespace FantasyMvvm
     using FantasyMvvm.FantasyPageKeepContainer.Impl;
     using FantasyMvvm.FantasyPageRegist;
     using FantasyMvvm.FantasyPageRegist.Impl;
+    using FantasyMvvm.FantasyRegionManager;
+    using FantasyMvvm.FantasyRegionManager.Impl;
+    using FantasyMvvm.FantasyViewRegist;
+    using FantasyMvvm.FantasyViewRegist.Impl;
 
     public static class FantasyApplication
     {
         public static MauiAppBuilder UseFantasyApplication(this MauiAppBuilder builder)
         {
+           builder.Services.AddSingleton<FantasyRegionLocator.RegionLocatorBase>(new FantasyRegionLocator.Impl.DefaultRegionLocator());
             builder.Services.AddSingleton<IPageRegist>(new DefaultPageRegist(builder.Services));
+            builder.Services.AddSingleton<IViewRegist>(new DefaultViewRegist(builder.Services));
+            
             builder.Services.AddTransient<PageModelLocatorBase, DefaultPageModelLocator>();
+            builder.Services.AddTransient<ViewModelLocatorBase, DefaultViewModelLocator>();
+
+
+            builder.Services.AddTransient<IRegionManager, DefaultRegionManager>();
+
             builder.Services.AddSingleton<IPageKeepContainer>(new DefaultPageKeepContainer());
             builder.Services.AddTransient<FantasyNavigation.INavigationService, DefaultNavigationService>();
+
             return builder;
         }
 

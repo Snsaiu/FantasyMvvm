@@ -18,4 +18,9 @@
 	  <PackageReference Include="Microsoft.Toolkit.Mvvm" Version="7.1.2" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Folder Include="Controls\" />
+	  <Folder Include="FantasyDependencyProp\" />
+	</ItemGroup>
+
 </Project>

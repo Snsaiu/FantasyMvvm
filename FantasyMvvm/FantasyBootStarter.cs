@@ -34,11 +34,9 @@ namespace FantasyMvvm
             }
             if (pm.Page is Page page)
             {
-        
-                this.MainPage = new NavigationPage(page)
-                {
-                    BarBackgroundColor = Color.FromArgb("0099FF")
-                };
+
+                this.MainPage = new NavigationPage(page);
+             
                 page.BindingContext = pm.PageModel;
                 if (pm.PageModel is INavigationAware navigationAware)
                 {

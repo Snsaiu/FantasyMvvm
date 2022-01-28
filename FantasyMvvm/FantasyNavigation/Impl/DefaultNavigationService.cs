@@ -22,35 +22,42 @@ namespace FantasyMvvm.FantasyNavigation.Impl
 
             PageModelElement pm = getPageModelElementByName(pageName);
 
-            setPageAndPageModelEvent(paramter, pm);
-            var page = (pm.Page as Page);
-
-            if (hasBackButton)
+            try
             {
-                await (Application.Current.MainPage as NavigationPage).PushAsync(page, true);
-
-            }
-            else
-            {
-
-
-              await  Application.Current.MainPage.Navigation.PushAsync(page);
-                var pages = Application.Current.MainPage.Navigation.NavigationStack.ToList();
-                foreach (var pg in pages)
+                setPageAndPageModelEvent(paramter, pm);
+                var page = (pm.Page as Page);
+                NavigationPage.SetHasBackButton(page, hasBackButton);
+                if (hasBackButton)
                 {
-                    if (page.GetType() != pg.GetType())
-                    {
-                        Application.Current.MainPage.Navigation.RemovePage(pg);
+                    await (Application.Current.MainPage as NavigationPage).PushAsync(page, true);
 
+                }
+                else
+                {
+
+
+
+                    await Application.Current.MainPage.Navigation.PushAsync(page);
+
+                    var pages = Application.Current.MainPage.Navigation.NavigationStack.ToList();
+                    foreach (var pg in pages)
+                    {
+                        if (page.GetType() != pg.GetType())
+                        {
+                            Application.Current.MainPage.Navigation.RemovePage(pg);
+
+                        }
                     }
                 }
 
+            }
+            catch (Exception e)
+            {
 
-
-
-
+                throw;
             }
 
+  
 
 
         }
