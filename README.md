@@ -160,4 +160,4 @@ paramter:s 通过paramter您可以获得上一个页面传递的参数。
 
 ## License 授权协议
 
-这个项目 MIT 协议， 请点击 [LICENSE.md](LICENSE.md) 了解更多细节。
+这个项目 MIT 协议， 请点击 [LICENSE](LICENSE) 了解更多细节。
