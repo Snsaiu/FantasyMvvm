@@ -1,4 +1,5 @@
 ﻿using FantasyMvvm.FantasyLocator;
+using Microsoft.Maui.Controls.PlatformConfiguration.WindowsSpecific;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace FantasyMvvm
 {
-    public abstract class FantasyBootStarter : Application
+    public abstract class FantasyBootStarter : Microsoft.Maui.Controls.Application
     {
 
         protected abstract string CreateShell();
@@ -16,11 +17,14 @@ namespace FantasyMvvm
 
         public FantasyBootStarter()
         {
+            this.On<Microsoft.Maui.Controls.PlatformConfiguration.Windows>().SetImageDirectory("Assets");
             this.pageModelLocator = FantasyContainer.GetRequiredService<PageModelLocatorBase>();
 
             string pageName = this.CreateShell();
             if (string.IsNullOrWhiteSpace(pageName))
             {
+
+             
                 throw new ArgumentNullException($"pageName 不能为空");
             }
 
@@ -32,23 +36,25 @@ namespace FantasyMvvm
             {
                 throw new NullReferenceException($"{pageName}的视图实例为空！请检查是否注册！");
             }
-            if (pm.Page is Page page)
+            if (pm.Page is Microsoft.Maui.Controls.Page page)
             {
 
                 this.MainPage = new NavigationPage(page);
-             
+
+                
+
                 page.BindingContext = pm.PageModel;
                 if (pm.PageModel is INavigationAware navigationAware)
                 {
 
                     page.NavigatedFrom += (s, e) =>
                     {
-                        navigationAware.OnNavigatedFrom(Application.Current.MainPage.Title, null);
+                        navigationAware.OnNavigatedFrom(Microsoft.Maui.Controls.Application.Current.MainPage.Title, null);
                     };
 
                     page.NavigatedTo += (s, e) =>
                     {
-                        navigationAware.OnNavigatedTo(Application.Current.MainPage.Title, null);
+                        navigationAware.OnNavigatedTo(Microsoft.Maui.Controls.Application.Current.MainPage.Title, null);
                     };
                 }
 

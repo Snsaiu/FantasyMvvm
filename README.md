@@ -14,7 +14,7 @@
 
 您可以使用nuget进行下载
 
-    Install-Package FantasyMvvm -Version 1.0.0
+    Install-Package FantasyMvvm -Version 1.0.0.2
 
 ### 使用
 

@@ -12,6 +12,17 @@
 		<SupportedOSPlatformVersion Condition="'$(TargetFramework)' == 'net6.0-android'">21.0</SupportedOSPlatformVersion>
 		<SupportedOSPlatformVersion Condition="$(TargetFramework.Contains('-windows'))">10.0.17763.0</SupportedOSPlatformVersion>
 		<TargetPlatformMinVersion Condition="$(TargetFramework.Contains('-windows'))">10.0.17763.0</TargetPlatformMinVersion>
+		<Authors>Saiu</Authors>
+		<Company>FantasyWorld</Company>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<RepositoryUrl>https://github.com/Snsaiu/FantasyMvvm</RepositoryUrl>
+		<PackageTags>maui;mvvm</PackageTags>
+		<AssemblyVersion>1.0.0.1</AssemblyVersion>
+		<FileVersion>1.0.0.1</FileVersion>
+		<PackageProjectUrl>https://github.com/Snsaiu/FantasyMvvm</PackageProjectUrl>
+		<Copyright>MIT</Copyright>
+		<Description>FantasyMVVM是一个针对MAUI而设计的MVVM模式框架。当前是预览版。可能会有未知的bug。正式项目中谨慎使用！！！</Description>
+		<Version>1.0.0.2</Version>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -21,6 +32,13 @@
 	<ItemGroup>
 	  <Folder Include="Controls\" />
 	  <Folder Include="FantasyDependencyProp\" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Include="..\README.md">
+	    <Pack>True</Pack>
+	    <PackagePath>\</PackagePath>
+	  </None>
 	</ItemGroup>
 
 </Project>
