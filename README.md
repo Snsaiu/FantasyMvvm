@@ -2,19 +2,19 @@
 
 > FantasyMVVM是一个针对MAUI而设计的MVVM模式框架。当前是预览版。可能会有未知的bug。正式项目中谨慎使用！！！
 
-该框架仿照WPF的PRISM框架而编写，包含了视图注册，导航，Region注册等。当前适配的是MAUI的preview 12版本。
+该框架仿照WPF的PRISM框架而编写，包含了视图注册，导航，Region注册等。当前适配的是MAUI的preview 的最新版本。
 
 ## Getting Started 使用指南
 
 ### 使用条件
 
-项目基于MAUI PREVIEW 12开发，您可能需要保证您的MAUI当前版本是PREVIEW 12
+项目基于MAUI PREVIEW （最新）版本开发，您可能需要保证您的MAUI当前版本是PREVIEW 的最新版本
 
 ### 安装
 
 您可以使用nuget进行下载
 
-    Install-Package FantasyMvvm -Version 1.0.0.2
+    Install-Package FantasyMvvm -Version 1.0.0.3
 
 ### 使用
 
@@ -61,7 +61,7 @@
 
 #### 命令绑定
 
-命令半丁采用微软的 Microsoft.Toolkit.Mvvm 。因此您可以使用如下语法：
+命令绑定采用微软的 Microsoft.Toolkit.Mvvm 。因此您可以使用如下语法：
 
     private RelayCommand nextCommand;
     public RelayCommand NextCommand =>

@@ -14,8 +14,7 @@ namespace FantasyMvvm
         protected abstract string CreateShell();
         private PageModelLocatorBase pageModelLocator = null;
 
-
-        public FantasyBootStarter()
+        private void createMainPage()
         {
             this.On<Microsoft.Maui.Controls.PlatformConfiguration.Windows>().SetImageDirectory("Assets");
             this.pageModelLocator = FantasyContainer.GetRequiredService<PageModelLocatorBase>();
@@ -24,7 +23,7 @@ namespace FantasyMvvm
             if (string.IsNullOrWhiteSpace(pageName))
             {
 
-             
+
                 throw new ArgumentNullException($"pageName 不能为空");
             }
 
@@ -41,7 +40,7 @@ namespace FantasyMvvm
 
                 this.MainPage = new NavigationPage(page);
 
-                
+
 
                 page.BindingContext = pm.PageModel;
                 if (pm.PageModel is INavigationAware navigationAware)
@@ -61,6 +60,20 @@ namespace FantasyMvvm
 
             }
 
+        }
+
+        public FantasyBootStarter()
+        {
+           this.createMainPage();
+        }
+
+        protected override Window CreateWindow(IActivationState? activationState)
+        {
+            if (this.MainPage==null)
+            {
+               this.createMainPage();
+            }
+            return base.CreateWindow(activationState);
         }
     }
 }

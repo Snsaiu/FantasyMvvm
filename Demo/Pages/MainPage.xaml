@@ -22,11 +22,11 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
 
-            <Label GridLayout.Row="0" HorizontalOptions="End" VerticalOptions="Center"  GridLayout.Column="0" Text="用户名:"></Label>
-            <Label GridLayout.Row="1" HorizontalOptions="End" VerticalOptions="Center"  GridLayout.Column="0" Text="密码:"></Label>
-            <Entry GridLayout.Row="0" GridLayout.Column="1" Placeholder="请输入用户名"></Entry>
-            <Entry GridLayout.Row="1" GridLayout.Column="1" Placeholder="请输入密码" IsPassword="True"></Entry>
-            <Button Command="{Binding NextCommand}" GridLayout.Row="2" GridLayout.ColumnSpan="2" Text="登录"></Button>
+            <Label Grid.Row="0" HorizontalOptions="End" VerticalOptions="Center"  Grid.Column="0" Text="用户名:"></Label>
+            <Label Grid.Row="1" HorizontalOptions="End" VerticalOptions="Center"  Grid.Column="0" Text="密码:"></Label>
+            <Entry Grid.Row="0" Grid.Column="1" Placeholder="请输入用户名"></Entry>
+            <Entry Grid.Row="1" Grid.Column="1" Placeholder="请输入密码" IsPassword="True"></Entry>
+            <Button Command="{Binding NextCommand}" Grid.Row="2" Grid.ColumnSpan="2" Text="登录"></Button>
         </Grid>
         
         
