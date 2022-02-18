@@ -16,7 +16,9 @@ namespace FantasyMvvm
 
         private void createMainPage()
         {
-            this.On<Microsoft.Maui.Controls.PlatformConfiguration.Windows>().SetImageDirectory("Assets");
+            //this.On<Microsoft.Maui.Controls.PlatformConfiguration.Windows>().SetImageDirectory("Assets");
+
+
             this.pageModelLocator = FantasyContainer.GetRequiredService<PageModelLocatorBase>();
 
             string pageName = this.CreateShell();

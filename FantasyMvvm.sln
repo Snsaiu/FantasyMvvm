@@ -5,7 +5,9 @@ VisualStudioVersion = 17.1.32120.378
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FantasyMvvm", "FantasyMvvm\FantasyMvvm.csproj", "{BB14AF68-BF13-4603-8216-1C854D4227C5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo", "Demo\Demo.csproj", "{3C540188-7013-47A7-A77D-FF5D6F49AE40}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Demo", "Demo\Demo.csproj", "{3C540188-7013-47A7-A77D-FF5D6F49AE40}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoPreview13", "DemoPreview13\DemoPreview13.csproj", "{455C8FB5-324E-4B70-B43E-C21C00D0562A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,6 +25,12 @@ Global
 		{3C540188-7013-47A7-A77D-FF5D6F49AE40}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3C540188-7013-47A7-A77D-FF5D6F49AE40}.Release|Any CPU.Build.0 = Release|Any CPU
 		{3C540188-7013-47A7-A77D-FF5D6F49AE40}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{455C8FB5-324E-4B70-B43E-C21C00D0562A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{455C8FB5-324E-4B70-B43E-C21C00D0562A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{455C8FB5-324E-4B70-B43E-C21C00D0562A}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{455C8FB5-324E-4B70-B43E-C21C00D0562A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{455C8FB5-324E-4B70-B43E-C21C00D0562A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{455C8FB5-324E-4B70-B43E-C21C00D0562A}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
