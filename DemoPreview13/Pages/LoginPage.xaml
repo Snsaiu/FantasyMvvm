@@ -26,8 +26,14 @@
             <ColumnDefinition  Width="{OnPlatform UWP=*, Android=auto,iOS=auto}"/>
         </Grid.ColumnDefinitions>
 
-    <StackLayout HorizontalOptions="CenterAndExpand"  VerticalOptions="CenterAndExpand">
+    <StackLayout >
 
+            <Label  Text="注册" HorizontalOptions="End" Margin="10 5">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding RegistCommand}"/>
+                </Label.GestureRecognizers>
+            </Label>
+          
             <Frame  CornerRadius="100" WidthRequest="200"  VerticalOptions="Center" HorizontalOptions="Center" IsClippedToBounds="True"  >
 
                 <Image Aspect="AspectFill" Margin="-20"  Source="header.jpg" WidthRequest="200" HeightRequest="200"  >

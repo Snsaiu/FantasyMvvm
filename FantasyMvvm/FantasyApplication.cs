@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 
 namespace FantasyMvvm
 {
+    using FantasyMvvm.FantasyDialogService;
+    using FantasyMvvm.FantasyDialogService.Impl;
     using FantasyMvvm.FantasyLocator;
     using FantasyMvvm.FantasyLocator.Impl;
     using FantasyMvvm.FantasyNavigation.Impl;
@@ -35,6 +37,7 @@ namespace FantasyMvvm
 
             builder.Services.AddSingleton<IPageKeepContainer>(new DefaultPageKeepContainer());
             builder.Services.AddTransient<FantasyNavigation.INavigationService, DefaultNavigationService>();
+            builder.Services.AddTransient<IDialogService, DefaultDialogService>();
 
             return builder;
         }

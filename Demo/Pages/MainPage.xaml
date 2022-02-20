@@ -8,8 +8,8 @@
              NavigationPage.HasNavigationBar="False"
               xmlns:fanasy="clr-namespace:FantasyMvvm.FantasyAttachProp;assembly=FantasyMvvm"
              BackgroundColor="White">
-    <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
-        <Image Source="dotnet_bot.png"/>
+    <StackLayout HorizontalOptions="CenterAndExpand" >
+      
         <Grid HorizontalOptions="Center" VerticalOptions="Center" WidthRequest="300" RowSpacing="10" ColumnSpacing="5"> 
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>

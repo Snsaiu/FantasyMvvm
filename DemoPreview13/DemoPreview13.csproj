@@ -57,6 +57,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <PackageReference Include="Microsoft.Toolkit.Mvvm" Version="7.1.2" />
+	</ItemGroup>
+
+	<ItemGroup>
 	  <ProjectReference Include="..\FantasyMvvm\FantasyMvvm.csproj" />
 	</ItemGroup>
 
