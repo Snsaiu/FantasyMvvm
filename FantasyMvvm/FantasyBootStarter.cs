@@ -14,11 +14,19 @@ namespace FantasyMvvm
         protected abstract string CreateShell();
         private PageModelLocatorBase pageModelLocator = null;
 
+        /// <summary>
+        /// 自定义控件处理
+        /// </summary>
+        protected virtual void ControlHandler()
+        {
+
+        }
+
         private void createMainPage()
         {
             //this.On<Microsoft.Maui.Controls.PlatformConfiguration.Windows>().SetImageDirectory("Assets");
 
-
+            this.ControlHandler(); ;
             this.pageModelLocator = FantasyContainer.GetRequiredService<PageModelLocatorBase>();
 
             string pageName = this.CreateShell();
