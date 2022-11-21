@@ -1,4 +1,6 @@
-﻿using Microsoft.Toolkit.Mvvm.ComponentModel;
+﻿
+
+using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace FantasyMvvm;
 

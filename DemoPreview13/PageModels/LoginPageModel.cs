@@ -1,18 +1,22 @@
-﻿using FantasyMvvm;
-using FantasyMvvm.FantasyDialogService;
-using Microsoft.Toolkit.Mvvm.Input;
+using FantasyMvvm;
+using FantasyMvvm.FantasyDialogService;﻿
+using CommunityToolkit.Mvvm.Input;
+using FantasyMvvm.FantasyNavigation;
+using FantasyMvvm.FantasyRegionManager;
+
 
 namespace DemoPreview13.PageModels
 {
-    public class LoginPageModel:FantasyPageModelBase
+    public partial class LoginPageModel : FantasyPageModelBase
     {
+
 
         public LoginPageModel(IDialogService dialogService)
         {
             this.dialogService = dialogService;
         }
 
-        #region RegistCommand
+
 
         RelayCommand _RegistCommand = null;
         private readonly IDialogService dialogService;
@@ -28,12 +32,26 @@ namespace DemoPreview13.PageModels
 
         protected virtual void RegistExecute()
         {
-            // logic when the command is executed.
+
             this.dialogService.DisplayAlert("title", "message", "cancel");
         }
 
         protected virtual bool CanRegistExecute() { return true; }
 
-        #endregion RegistCommand
+
+        private INavigationService _regionManager = null;
+
+        public LoginPageModel(INavigationService regionManager)
+        {
+            this._regionManager = regionManager;
+        }
+
+
+        [ICommand]
+        public void Login()
+        {
+            this._regionManager.NavigationToAsync("HomePage", false);
+        }
     }
+
 }
