@@ -41,7 +41,9 @@ namespace FantasyMvvm
 
         public static MauiAppBuilder UseFantasyApplication(this MauiAppBuilder builder,Action<FantasyApplicationOption> option)
         {
-            option(new FantasyApplicationOption(builder));
+            FantasyApplicationOption _option = new FantasyApplicationOption(builder);
+
+            option?.Invoke(_option);
 
             return builder;
         }

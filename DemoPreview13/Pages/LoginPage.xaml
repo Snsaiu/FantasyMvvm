@@ -1,4 +1,4 @@
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+﻿<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="DemoPreview13.Pages.LoginPage"
              BackgroundColor="White">
@@ -55,7 +55,7 @@
             <Entry Placeholder="请输入邮箱" Grid.Column="1" MinimumWidthRequest="150" HorizontalOptions="StartAndExpand" ></Entry>
                 <Entry Placeholder="请输入密码" Grid.Column="1" MinimumWidthRequest="150" IsPassword="True" HorizontalOptions="StartAndExpand" Grid.Row="1"></Entry>
 
-            <Button Text="登录" Grid.Row="3" Grid.ColumnSpan="2" HorizontalOptions="CenterAndExpand" WidthRequest="200"></Button>
+            <Button Command="{Binding LoginCommand}" Text="登录" Grid.Row="3" Grid.ColumnSpan="2" HorizontalOptions="CenterAndExpand" WidthRequest="200"></Button>
         </Grid>
     </StackLayout>
 

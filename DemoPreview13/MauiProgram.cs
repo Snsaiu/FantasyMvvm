@@ -18,6 +18,7 @@ namespace DemoPreview13
             builder.UseFantasyApplication().UseGetProvider();
 
             builder.UseRegistPage<LoginPage, LoginPageModel>("LoginPage");
+            builder.UseRegistPage<HomePage, HomePageModel>("HomePage");
 
             return builder.Build();
         }
