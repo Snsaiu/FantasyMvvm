@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using FantasyMvvm.FantasyModels;
 
 namespace FantasyMvvm.FantasyDialogService
 {
@@ -14,7 +15,7 @@ namespace FantasyMvvm.FantasyDialogService
 
         public Task DisplayAlert(string title, string message, string cancel);
 
-        public Task<object> ShowPopUpDialogAsync(string dialogName);
+        public Task ShowPopUpDialogAsync(string dialogName,INavigationParamter paramter=null,Action<CloseResultModel> closeEvent=null);
 
 
         public Task<bool> DisplayAlert(string title, string message, string accept, string cancel);

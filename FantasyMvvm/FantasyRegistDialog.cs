@@ -7,7 +7,7 @@ namespace FantasyMvvm
 	public static class FantasyRegistDialog
 	{
 
-        public static MauiAppBuilder UseRegistDialog<D, DM>(this MauiAppBuilder builder, string name) where D :Popup where DM : FantasyDialogModelBase
+        public static MauiAppBuilder UseRegistDialog<D, DM>(this MauiAppBuilder builder, string name=null) where D :Popup where DM : FantasyDialogModelBase
         {
 
             var regist = builder.Services.BuildServiceProvider().GetRequiredService<IDialogRegist>();
@@ -15,6 +15,12 @@ namespace FantasyMvvm
             return builder;
         }
 
+        public static MauiAppBuilder UseRegistDialog<D>(this MauiAppBuilder builder,string name=null) where D:Popup
+        {
+            var regist = builder.Services.BuildServiceProvider().GetRequiredService<IDialogRegist>();
+            regist.Regist<D>(name);
+            return builder;
+        }
 
     }
 }

@@ -26,6 +26,11 @@ namespace FantasyMvvm.FantasyViewRegist.Impl
 
         public void Regist<V, VM>(string name)
         {
+            if(string.IsNullOrEmpty(name))
+            {
+                name = typeof(V).Name;
+            }
+
             if (instance.ContainsKey(name))
             {
                 throw new Exception($"{name}重复!");
@@ -37,6 +42,26 @@ namespace FantasyMvvm.FantasyViewRegist.Impl
 
             this.serviceCollection.AddTransient(typeof(V));
             this.serviceCollection.AddTransient(typeof(VM));
+        }
+
+        public void Regist<V>(string name)
+        {
+            if (string.IsNullOrEmpty(name))
+            {
+                name = typeof(V).Name;
+            }
+
+            if (instance.ContainsKey(name))
+            {
+                throw new Exception($"{name}重复!");
+            }
+            var pm = new ViewModel();
+            pm.View = typeof(V);
+         
+            instance[name] = pm;
+
+            this.serviceCollection.AddTransient(typeof(V));
+  
         }
     }
 }

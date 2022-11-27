@@ -9,7 +9,9 @@ public interface IPageRegist
 {
      void Regist<P, PM>(string name);
 
-     PageModel GetPageModelByName(string name);
+    void Regist<P>(string name);
+
+    PageModel GetPageModelByName(string name);
 
 
 }

@@ -14,10 +14,20 @@ public class DefaultPageModelLocator: PageModelLocatorBase
         try
         {
             var pageType = this.provider.GetRequiredService(pageModel.Page);
-            var pageModelType = this.provider.GetRequiredService(pageModel.PM);
 
-            PageModelElement element = new PageModelElement() { Page = pageType, PageModel = pageModelType };
-            return element;
+            if(pageModel.PM!=null)
+            {
+                var pageModelType = this.provider.GetRequiredService(pageModel.PM);
+
+                PageModelElement element = new PageModelElement() { Page = pageType, PageModel = pageModelType };
+                return element;
+            }
+            else
+            {
+                PageModelElement element = new PageModelElement() { Page = pageType};
+                return element;
+            }
+
         }
         catch (Exception e)
         {

@@ -9,7 +9,7 @@ namespace FantasyMvvm.FantasyModels.Impls
     public class NavigationParamter : INavigationParamter
     {
 
-        private Dictionary<string,object> _params=null;
+        private Dictionary<string,object> _params=new Dictionary<string, object>();
 
         public void Add(string key, object value)
         {

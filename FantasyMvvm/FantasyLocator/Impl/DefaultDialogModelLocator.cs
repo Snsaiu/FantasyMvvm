@@ -19,13 +19,26 @@ public class DefaultDialogModelLocator:DialogModelLocatorBase
         {
 
             var dialogType = this._provider.GetRequiredService(dialogModel.Popup);
-            var dialogModelType = this._provider.GetRequiredService(dialogModel.PM);
-            DialogModelElement element = new DialogModelElement()
+            if(dialogModel.PM!=null)
             {
-                Dialog = dialogType,
-                DialogModel = dialogModelType
-            };
-            return element;
+                var dialogModelType = this._provider.GetRequiredService(dialogModel.PM);
+                DialogModelElement element = new DialogModelElement()
+                {
+                    Dialog = dialogType,
+                    DialogModel = dialogModelType
+                };
+                return element;
+            }
+            else
+            {
+                DialogModelElement element = new DialogModelElement()
+                {
+                    Dialog = dialogType
+                };
+                return element;
+            }
+            
+          
 
         }
         catch (Exception e)

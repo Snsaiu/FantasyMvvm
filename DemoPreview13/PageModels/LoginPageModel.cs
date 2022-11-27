@@ -1,6 +1,7 @@
 using FantasyMvvm;
 using FantasyMvvm.FantasyDialogService;﻿
 using CommunityToolkit.Mvvm.Input;
+using FantasyMvvm.FantasyModels.Impls;
 using FantasyMvvm.FantasyNavigation;
 using FantasyMvvm.FantasyRegionManager;
 
@@ -42,7 +43,13 @@ namespace DemoPreview13.PageModels
         [ICommand]
         public async void ShowSummary()
         {
-           await this.dialogService.ShowPopUpDialogAsync("SummaryDialog");
+            var paramter = new NavigationParamter();
+            paramter.Add("input","i am input paramter");
+           await this.dialogService.ShowPopUpDialogAsync("SummaryDialog",paramter, (x) =>
+           {
+               this.dialogService.DisplayAlert("info", x.Data.ToString(), "ok", "cancel");
+
+           });
         }
 
 

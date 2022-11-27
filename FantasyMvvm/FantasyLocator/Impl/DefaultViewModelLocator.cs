@@ -15,10 +15,23 @@ public class DefaultViewModelLocator: ViewModelLocatorBase
         try
         {
             var viewType = this.provider.GetRequiredService(viewModel.View);
-            var viewModelType = this.provider.GetRequiredService(viewModel.VM);
 
-            ViewModelElement element = new ViewModelElement() { View = viewType, ViewModel = viewModelType };
-            return element;
+            if(viewModel.VM!=null)
+            {
+                var viewModelType = this.provider.GetRequiredService(viewModel.VM);
+
+                ViewModelElement element = new ViewModelElement() { View = viewType, ViewModel = viewModelType };
+                return element;
+
+            }
+            else
+            {
+              
+                ViewModelElement element = new ViewModelElement() { View = viewType};
+                return element;
+            }
+
+
         }
         catch (Exception e)
         {

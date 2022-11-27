@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Xml.Linq;
 using FantasyMvvm.FantasyModels;
 
 namespace FantasyMvvm.FantasyDialogRegist.Impl
@@ -21,6 +22,12 @@ namespace FantasyMvvm.FantasyDialogRegist.Impl
 
         public void Regist<P, PM>(string name)
         {
+
+            if(string.IsNullOrEmpty(name))
+            {
+                name = typeof(P).Name;
+            }
+            
             if (instance.ContainsKey(name))
             {
                 throw new Exception($"{name}重复");
@@ -32,6 +39,25 @@ namespace FantasyMvvm.FantasyDialogRegist.Impl
             instance[name] = pm;
             this._serviceCollection.AddTransient(typeof(P));
             this._serviceCollection.AddTransient(typeof(PM));
+        }
+
+        public void Regist<P>(string name)
+        {
+            if (string.IsNullOrEmpty(name))
+            {
+                name = typeof(P).Name;
+            }
+
+            if (instance.ContainsKey(name))
+            {
+                throw new Exception($"{name}重复");
+            }
+
+            var pm = new DialogModel();
+            pm.Popup = typeof(P);
+            instance[name] = pm;
+            this._serviceCollection.AddTransient(typeof(P));
+       
         }
     }
 }

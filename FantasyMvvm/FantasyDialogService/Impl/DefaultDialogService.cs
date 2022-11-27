@@ -6,6 +6,8 @@ using CommunityToolkit.Maui.Alerts;
 using System.Threading.Tasks;
 using CommunityToolkit.Maui.Views;
 using FantasyMvvm.FantasyLocator;
+using System.Reflection.Metadata;
+using FantasyMvvm.FantasyModels;
 
 namespace FantasyMvvm.FantasyDialogService.Impl
 {
@@ -59,7 +61,7 @@ namespace FantasyMvvm.FantasyDialogService.Impl
             return res;
         }
 
-        public async Task<object> ShowPopUpDialogAsync(string dialogName)
+        public async Task ShowPopUpDialogAsync(string dialogName,INavigationParamter paramter= null, Action<CloseResultModel> closeEvent = null)
         {
             if (string.IsNullOrEmpty(dialogName))
             {
@@ -74,9 +76,19 @@ namespace FantasyMvvm.FantasyDialogService.Impl
                 throw new NullReferenceException($"{dialogName}的Popup实例为空！请检查popup是否已经注册");
             if (dm.Dialog is Popup p)
             {
-                if (dm.DialogModel != null)
-                    p.BindingContext = dm.DialogModel;
-              return Application.Current.MainPage.ShowPopupAsync(p);
+                if (dm.DialogModel != null && dm.DialogModel is FantasyDialogModelBase dialogModel)
+                {
+
+                    p.BindingContext = dialogModel;
+                    dialogModel.OnParamter(paramter);
+                    dialogModel.OnCloseEvent += (r) =>
+                    {
+                        closeEvent?.Invoke(r);
+                        p.Close();
+                    };
+                    
+                }
+              await Application.Current.MainPage.ShowPopupAsync(p);
             }
 
             throw new Exception("注册的类型不是popup类型");

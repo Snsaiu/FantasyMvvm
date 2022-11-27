@@ -18,7 +18,7 @@ namespace DemoPreview13
                 }).UseMauiCommunityToolkit();
             builder.UseFantasyApplication().UseGetProvider();
 
-            builder.UseRegistPage<LoginPage, LoginPageModel>("LoginPage");
+            builder.UseRegistPage<LoginPage, LoginPageModel>();
             builder.UseRegistPage<HomePage, HomePageModel>("HomePage");
             builder.UseRegistDialog<SummaryDialog, SummaryDialogModel>("SummaryDialog");
 

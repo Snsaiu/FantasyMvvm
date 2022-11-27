@@ -15,6 +15,12 @@ public class DefaultPageRegist:IPageRegist
     }
     public void Regist<P, PM>(string name)
     {
+
+        if(string.IsNullOrEmpty(name))
+        {
+            name = typeof(P).Name;
+        }
+
         if (instance.ContainsKey(name))
         {
             throw new Exception($"{name}重复!");
@@ -33,5 +39,24 @@ public class DefaultPageRegist:IPageRegist
     public PageModel GetPageModelByName(string name)
     {
         return this.instance.GetValueOrDefault(name);
+    }
+
+    public void Regist<P>(string name)
+    {
+        if (string.IsNullOrEmpty(name))
+        {
+            name = typeof(P).Name;
+        }
+
+        if (instance.ContainsKey(name))
+        {
+            throw new Exception($"{name}重复!");
+        }
+        var pm = new PageModel();
+        pm.Page = typeof(P);
+
+        instance[name] = pm;
+
+        this.serviceCollection.AddTransient(typeof(P));
     }
 }

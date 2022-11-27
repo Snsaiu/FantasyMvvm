@@ -18,5 +18,13 @@ namespace FantasyMvvm
             return builder;
         }
 
+        public static MauiAppBuilder UseRegistView<V>(this MauiAppBuilder builder, string name) where V : View
+        {
+
+            var regist = builder.Services.BuildServiceProvider().GetRequiredService<IViewRegist>();
+            regist.Regist<V>(name);
+
+            return builder;
+        }
     }
 }

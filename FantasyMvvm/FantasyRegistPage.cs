@@ -12,7 +12,7 @@ namespace FantasyMvvm
     public static class FantasyRegistPage
     {
 
-        public static MauiAppBuilder UseRegistPage<P, PM>(this MauiAppBuilder builder,string name) where P :Page where PM :FantasyPageModelBase
+        public static MauiAppBuilder UseRegistPage<P, PM>(this MauiAppBuilder builder,string name=null) where P :Page where PM :FantasyPageModelBase
         {
 
             var regist = builder.Services.BuildServiceProvider().GetRequiredService<IPageRegist>();
@@ -20,9 +20,15 @@ namespace FantasyMvvm
 
             return builder;
         }
-    
 
-     
-    
+        public static MauiAppBuilder UseRegistPage<P>(this MauiAppBuilder builder, string name = null) where P : Page 
+        {
+
+            var regist = builder.Services.BuildServiceProvider().GetRequiredService<IPageRegist>();
+            regist.Regist<P>(name);
+
+            return builder;
+        }
+
     }
 }

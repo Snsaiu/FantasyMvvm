@@ -11,6 +11,8 @@ namespace FantasyMvvm.FantasyViewRegist
     {
         void Regist<V, VM>(string name);
 
+        void Regist<V>(string name);
+
         ViewModel GetViewModelByName(string name);
     }
 }
