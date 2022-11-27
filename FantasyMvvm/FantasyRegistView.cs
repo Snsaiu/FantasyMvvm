@@ -9,7 +9,7 @@ namespace FantasyMvvm
 {
     public static class FantasyRegistView
     {
-        public static MauiAppBuilder UseRegistView<V, VM>(this MauiAppBuilder builder, string name)
+        public static MauiAppBuilder UseRegistView<V, VM>(this MauiAppBuilder builder, string name)where V :View where VM :FantasyViewModelBase
         {
 
             var regist = builder.Services.BuildServiceProvider().GetRequiredService<IViewRegist>();
