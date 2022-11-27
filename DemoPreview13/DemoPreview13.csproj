@@ -54,10 +54,12 @@
 
 	<ItemGroup>
 	  <None Remove="Resources\Images\header.jpg" />
+	  <None Remove="CommunityToolkit.Maui" />
 	</ItemGroup>
 
 	<ItemGroup>
 	  <PackageReference Include="Microsoft.Toolkit.Mvvm" Version="7.1.2" />
+	  <PackageReference Include="CommunityToolkit.Maui" Version="3.0.0" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -71,6 +73,9 @@
 	  <MauiXaml Update="Pages\HomePage.xaml">
 	    <SubType></SubType>
 	  </MauiXaml>
+	  <MauiXaml Update="Pages\SummaryDialog.xaml">
+	    <SubType></SubType>
+	  </MauiXaml>
 	</ItemGroup>
 
 	<PropertyGroup Condition="$(TargetFramework.Contains('-windows'))">
@@ -78,4 +83,7 @@
 		<RuntimeIdentifier>win10-x64</RuntimeIdentifier>
 	</PropertyGroup>
 	
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net7.0-ios|AnyCPU'">
+	  <CreatePackage>false</CreatePackage>
+	</PropertyGroup>
 </Project>
