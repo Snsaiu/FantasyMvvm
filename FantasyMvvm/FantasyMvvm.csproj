@@ -22,7 +22,7 @@
 		<PackageProjectUrl>https://github.com/Snsaiu/FantasyMvvm</PackageProjectUrl>
 		<Copyright>MIT</Copyright>
 		<Description>FantasyMVVM是一个针对MAUI而设计的MVVM模式框架。当前是预览版。可能会有未知的bug。正式项目中谨慎使用！！！</Description>
-		<Version>1.0.1.1-preview</Version>
+		<Version>1.0.1.2-preview</Version>
 	</PropertyGroup>
 
 	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
