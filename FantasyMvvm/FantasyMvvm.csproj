@@ -22,16 +22,27 @@
 		<PackageProjectUrl>https://github.com/Snsaiu/FantasyMvvm</PackageProjectUrl>
 		<Copyright>MIT</Copyright>
 		<Description>FantasyMVVM是一个针对MAUI而设计的MVVM模式框架。当前是预览版。可能会有未知的bug。正式项目中谨慎使用！！！</Description>
-		<Version>1.0.0.4-preview</Version>
+		<Version>1.0.1.0-preview</Version>
 	</PropertyGroup>
 
+	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+	  <WarningLevel>4</WarningLevel>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net7.0-ios|AnyCPU'">
+	  <CreatePackage>false</CreatePackage>
+	</PropertyGroup>
 	<ItemGroup>
 	  <Folder Include="Controls\" />
 	  <Folder Include="FantasyDependencyProp\" />
+	  <Folder Include="FantasyDialogRegist\" />
+	  <Folder Include="FantasyDialogRegist\Impl\" />
 	</ItemGroup>
 
 	<ItemGroup>
 	  <None Remove="CommunityToolkit.Mvvm" />
+	  <None Remove="CommunityToolkit.Maui" />
+	  <None Remove="FantasyDialogRegist\" />
+	  <None Remove="FantasyDialogRegist\Impl\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <None Include="..\README.md">
@@ -42,5 +53,6 @@
 
 	<ItemGroup>
 	  <PackageReference Include="CommunityToolkit.Mvvm" Version="8.0.0-preview3" />
+	  <PackageReference Include="CommunityToolkit.Maui" Version="3.0.0" />
 	</ItemGroup>
 </Project>

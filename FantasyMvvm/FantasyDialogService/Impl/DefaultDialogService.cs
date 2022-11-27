@@ -2,12 +2,21 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using CommunityToolkit.Maui.Alerts;
 using System.Threading.Tasks;
+using CommunityToolkit.Maui.Views;
+using FantasyMvvm.FantasyLocator;
 
 namespace FantasyMvvm.FantasyDialogService.Impl
 {
     public class DefaultDialogService : IDialogService
     {
+    
+
+        public DefaultDialogService( )
+        {
+         
+        }
         public  async Task<string> DisplayActionSheet(string title, string cancel, string destruction, params string[] buttons)
         {
            var res= await   Application.Current.MainPage.DisplayActionSheet(title, cancel, destruction, buttons);
@@ -48,6 +57,29 @@ namespace FantasyMvvm.FantasyDialogService.Impl
         {
             var res = await Application.Current.MainPage.DisplayPromptAsync(title, message, accept, cancel, placeholder, maxLength, keyboard, initialValue);
             return res;
+        }
+
+        public async Task<object> ShowPopUpDialogAsync(string dialogName)
+        {
+            if (string.IsNullOrEmpty(dialogName))
+            {
+                throw new ArgumentException($"dialogName 不能为空");
+            }
+
+          var locator=  FantasyContainer.GetRequiredService<DialogModelLocatorBase>();
+
+            var dm= locator.GetDialogModelElementByName(dialogName);
+
+            if (dm == null)
+                throw new NullReferenceException($"{dialogName}的Popup实例为空！请检查popup是否已经注册");
+            if (dm.Dialog is Popup p)
+            {
+                if (dm.DialogModel != null)
+                    p.BindingContext = dm.DialogModel;
+              return Application.Current.MainPage.ShowPopupAsync(p);
+            }
+
+            throw new Exception("注册的类型不是popup类型");
         }
     }
 }

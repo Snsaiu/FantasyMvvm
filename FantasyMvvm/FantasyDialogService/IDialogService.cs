@@ -14,6 +14,8 @@ namespace FantasyMvvm.FantasyDialogService
 
         public Task DisplayAlert(string title, string message, string cancel);
 
+        public Task<object> ShowPopUpDialogAsync(string dialogName);
+
 
         public Task<bool> DisplayAlert(string title, string message, string accept, string cancel);
         public Task DisplayAlert(string title, string message, string cancel, FlowDirection flowDirection);

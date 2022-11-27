@@ -28,6 +28,8 @@ public class DefaultPageRegist:IPageRegist
         this.serviceCollection.AddTransient(typeof(PM));
     }
 
+
+
     public PageModel GetPageModelByName(string name)
     {
         return this.instance.GetValueOrDefault(name);

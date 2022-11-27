@@ -68,5 +68,6 @@
         <Image BackgroundColor="Red" IsVisible="{x:StaticResource showimage}"  Source="header.jpg" Aspect="AspectFill" Grid.Column="1">
           
         </Image>
+        <Button Text="show summary" Command="{Binding ShowSummaryCommand}"></Button>
     </Grid>
 </ContentPage>

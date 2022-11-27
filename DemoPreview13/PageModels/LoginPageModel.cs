@@ -10,14 +10,6 @@ namespace DemoPreview13.PageModels
     public partial class LoginPageModel : FantasyPageModelBase
     {
 
-
-        public LoginPageModel(IDialogService dialogService)
-        {
-            this.dialogService = dialogService;
-        }
-
-
-
         RelayCommand _RegistCommand = null;
         private readonly IDialogService dialogService;
 
@@ -41,9 +33,16 @@ namespace DemoPreview13.PageModels
 
         private INavigationService _regionManager = null;
 
-        public LoginPageModel(INavigationService regionManager)
+        public LoginPageModel(INavigationService regionManager,IDialogService dialogService)
         {
             this._regionManager = regionManager;
+            this.dialogService = dialogService;
+        }
+
+        [ICommand]
+        public async void ShowSummary()
+        {
+           await this.dialogService.ShowPopUpDialogAsync("SummaryDialog");
         }
 
 
