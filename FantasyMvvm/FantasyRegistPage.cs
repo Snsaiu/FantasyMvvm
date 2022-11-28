@@ -7,25 +7,25 @@ using FantasyMvvm.FantasyModels;
 
 namespace FantasyMvvm
 {
-    using FantasyMvvm.FantasyPageRegist;
+    using FantasyMvvm.FantasyPageRegister;
 
-    public static class FantasyRegistPage
+    public static class FantasyRegisterPage
     {
 
-        public static MauiAppBuilder UseRegistPage<P, PM>(this MauiAppBuilder builder,string name=null) where P :Page where PM :FantasyPageModelBase
+        public static MauiAppBuilder UseRegisterPage<P, PM>(this MauiAppBuilder builder,string name=null) where P :Page where PM :FantasyPageModelBase
         {
 
-            var regist = builder.Services.BuildServiceProvider().GetRequiredService<IPageRegist>();
-            regist.Regist<P,PM>(name);
+            var register = builder.Services.BuildServiceProvider().GetRequiredService<IPageRegister>();
+            register.Register<P,PM>(name);
 
             return builder;
         }
 
-        public static MauiAppBuilder UseRegistPage<P>(this MauiAppBuilder builder, string name = null) where P : Page 
+        public static MauiAppBuilder UseRegisterPage<P>(this MauiAppBuilder builder, string name = null) where P : Page 
         {
 
-            var regist = builder.Services.BuildServiceProvider().GetRequiredService<IPageRegist>();
-            regist.Regist<P>(name);
+            var register = builder.Services.BuildServiceProvider().GetRequiredService<IPageRegister>();
+            register.Register<P>(name);
 
             return builder;
         }

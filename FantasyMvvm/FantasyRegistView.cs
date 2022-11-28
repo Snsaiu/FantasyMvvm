@@ -1,4 +1,4 @@
-﻿using FantasyMvvm.FantasyViewRegist;
+﻿using FantasyMvvm.FantasyViewRegister;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,22 +7,22 @@ using System.Threading.Tasks;
 
 namespace FantasyMvvm
 {
-    public static class FantasyRegistView
+    public static class FantasyRegisterView
     {
-        public static MauiAppBuilder UseRegistView<V, VM>(this MauiAppBuilder builder, string name)where V :View where VM :FantasyViewModelBase
+        public static MauiAppBuilder UseRegisterView<V, VM>(this MauiAppBuilder builder, string name)where V :View where VM :FantasyViewModelBase
         {
 
-            var regist = builder.Services.BuildServiceProvider().GetRequiredService<IViewRegist>();
-            regist.Regist<V, VM>(name);
+            var register = builder.Services.BuildServiceProvider().GetRequiredService<IViewRegister>();
+            register.Register<V, VM>(name);
 
             return builder;
         }
 
-        public static MauiAppBuilder UseRegistView<V>(this MauiAppBuilder builder, string name) where V : View
+        public static MauiAppBuilder UseRegisterView<V>(this MauiAppBuilder builder, string name) where V : View
         {
 
-            var regist = builder.Services.BuildServiceProvider().GetRequiredService<IViewRegist>();
-            regist.Regist<V>(name);
+            var register = builder.Services.BuildServiceProvider().GetRequiredService<IViewRegister>();
+            register.Register<V>(name);
 
             return builder;
         }

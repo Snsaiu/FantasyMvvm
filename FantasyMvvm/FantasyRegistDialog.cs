@@ -1,24 +1,24 @@
 ﻿using System;
 using CommunityToolkit.Maui.Views;
-using FantasyMvvm.FantasyDialogRegist;
+using FantasyMvvm.FantasyDialogRegister;
 
 namespace FantasyMvvm
 {
-	public static class FantasyRegistDialog
+	public static class FantasyRegisterDialog
 	{
 
-        public static MauiAppBuilder UseRegistDialog<D, DM>(this MauiAppBuilder builder, string name=null) where D :Popup where DM : FantasyDialogModelBase
+        public static MauiAppBuilder UseRegisterDialog<D, DM>(this MauiAppBuilder builder, string name=null) where D :Popup where DM : FantasyDialogModelBase
         {
 
-            var regist = builder.Services.BuildServiceProvider().GetRequiredService<IDialogRegist>();
-            regist.Regist<D, DM>(name);
+            var register = builder.Services.BuildServiceProvider().GetRequiredService<IDialogRegister>();
+            register.Register<D, DM>(name);
             return builder;
         }
 
-        public static MauiAppBuilder UseRegistDialog<D>(this MauiAppBuilder builder,string name=null) where D:Popup
+        public static MauiAppBuilder UseRegisterDialog<D>(this MauiAppBuilder builder,string name=null) where D:Popup
         {
-            var regist = builder.Services.BuildServiceProvider().GetRequiredService<IDialogRegist>();
-            regist.Regist<D>(name);
+            var register = builder.Services.BuildServiceProvider().GetRequiredService<IDialogRegister>();
+            register.Register<D>(name);
             return builder;
         }
 

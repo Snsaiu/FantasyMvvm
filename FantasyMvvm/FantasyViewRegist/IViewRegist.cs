@@ -5,13 +5,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FantasyMvvm.FantasyViewRegist
+namespace FantasyMvvm.FantasyViewRegister
 {
-    public interface IViewRegist
+    public interface IViewRegister
     {
-        void Regist<V, VM>(string name);
+        void Register<V, VM>(string name);
 
-        void Regist<V>(string name);
+        void Register<V>(string name);
 
         ViewModel GetViewModelByName(string name);
     }

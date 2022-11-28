@@ -11,9 +11,9 @@ public partial class SummaryDialogModel : FantasyDialogModelBase
 
     [ObservableProperty]
     private string input = "";
-    public override void OnParamter(INavigationParamter paramter)
+    public override void OnParameter(INavigationParameter parameter)
     {
-       this.Input= paramter.Get<string>("input");
+       this.Input= parameter.Get<string>("input");
     }
 
     [ICommand]

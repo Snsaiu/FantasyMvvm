@@ -5,8 +5,8 @@ using FantasyMvvm.FantasyModels;
 public interface INavigationAware
 {
     
-    public void OnNavigatedTo(string source, INavigationParamter paramter);
+    public void OnNavigatedTo(string source, INavigationParameter parameter);
 
-    public void OnNavigatedFrom(string source,INavigationParamter paramter);
+    public void OnNavigatedFrom(string source,INavigationParameter parameter);
 
 }

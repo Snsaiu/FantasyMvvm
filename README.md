@@ -40,13 +40,13 @@ public partial class App : FantasyBootStarter
                                xmlns:local="clr-namespace:FantasyMvvm;assembly=FantasyMvvm"
 ```
 
-4. 使用扩展方式 UseRegistPage 注册您的Page和PageView。如果是页面PageModel应该继承 FantasyPageModelBase 
+4. 使用扩展方式 UseRegisterPage 注册您的Page和PageView。如果是页面PageModel应该继承 FantasyPageModelBase 
   如果是ViewModel应该继承 FantasyViewModelBase
 
 ```c#
-builder.UseRegistPage<MainPage,MainPageModel>("MainPage");
-builder.UseRegistPage<SecondPage, SecondPageModel>("SecondPage");
-builder.UseRegistView<TitleView, TitleViewModel>("TitleView");
+builder.UseRegisterPage<MainPage,MainPageModel>("MainPage");
+builder.UseRegisterPage<SecondPage, SecondPageModel>("SecondPage");
+builder.UseRegisterView<TitleView, TitleViewModel>("TitleView");
 ```
 
 5. 在您的App.xaml.cs文件中设置启动页面
@@ -86,23 +86,23 @@ public void Next()
 ```
 #### 页面注册
 
-FantasyMvvm的页面注册可以自动化绑定PageModel，当然，这需要您进行手动配置。您可以使用扩展方法`public static MauiAppBuilder UseRegistPage<P, PM>(this MauiAppBuilder builder,string name)`来进行注册。示例如下：
+FantasyMvvm的页面注册可以自动化绑定PageModel，当然，这需要您进行手动配置。您可以使用扩展方法`public static MauiAppBuilder UseRegisterPage<P, PM>(this MauiAppBuilder builder,string name)`来进行注册。示例如下：
 
 ```c#    
-builder.UseRegistPage<MainPage,MainPageModel>("MainPage");
-builder.UseRegistPage<SecondPage, SecondPageModel>("SecondPage");
+builder.UseRegisterPage<MainPage,MainPageModel>("MainPage");
+builder.UseRegisterPage<SecondPage, SecondPageModel>("SecondPage");
 ```
-UseRegistPage 需要您传递一个string类型的变量，该变量的作用是让你给你的页面命名，未来导航的时候您可以根据命名来切换页面。
+UseRegisterPage 需要您传递一个string类型的变量，该变量的作用是让你给你的页面命名，未来导航的时候您可以根据命名来切换页面。
             
 ### 视图注册
 
-视图是应用于页面的小组件，一个页面中可能会有多个视图，注册一个视图非常简单，和页面注册一样，不过，您使用的是`public static MauiAppBuilder UseRegistView<V, VM>(this MauiAppBuilder builder, string name)`扩展方法。示例如下：
+视图是应用于页面的小组件，一个页面中可能会有多个视图，注册一个视图非常简单，和页面注册一样，不过，您使用的是`public static MauiAppBuilder UseRegisterView<V, VM>(this MauiAppBuilder builder, string name)`扩展方法。示例如下：
 
 ```c#
-builder.UseRegistView<TitleView, TitleViewModel>("TitleView");
+builder.UseRegisterView<TitleView, TitleViewModel>("TitleView");
 ```
 
-UseRegistView 需要您传递一个string类型的变量，该变量的作用是让你给你的视图命名，未来切换视图时候您可以根据命名来切换。
+UseRegisterView 需要您传递一个string类型的变量，该变量的作用是让你给你的视图命名，未来切换视图时候您可以根据命名来切换。
 
 #### 页面保持
 
@@ -115,15 +115,15 @@ UseRegistView 需要您传递一个string类型的变量，该变量的作用是
 INavigationService 提供了导航的两个方法，分别是
 
 ```c#
-Task NavigationToAsync(string pageName, bool hasBackButton = true, INavigationParamter paramter = null);
-Task NavigationToAsync(string pageName, INavigationParamter paramter = null);
+Task NavigationToAsync(string pageName, bool hasBackButton = true, INavigationParameter parameter = null);
+Task NavigationToAsync(string pageName, INavigationParameter parameter = null);
 ```
 
 pageName:要跳转的页面名称
 
 **hasBackButton**：默认是true，表示顶部会有一个返回上一个页面的按钮，通常情况下，建议都是true.但是当您使用登录页面的时候，登录成功后您不希望用户点击回退或者其他方式在返回登陆页面，您可以设置为false。注意，一旦您设置为false，会清空所有页面。
 
-**paramter**:导航参数，您在跳转页面的时候可以传递参数给下一个页面。
+**parameter**:导航参数，您在跳转页面的时候可以传递参数给下一个页面。
 
 #### Region视图
 
@@ -164,14 +164,14 @@ viewName:视图名称
 该接口需要您实现两个方法
 
 ```c#
-public void OnNavigatedTo(string source, INavigationParamter paramter);
+public void OnNavigatedTo(string source, INavigationParameter parameter);
 
-public void OnNavigatedFrom(string source,INavigationParamter paramter);
+public void OnNavigatedFrom(string source,INavigationParameter parameter);
 ```
 
 **source**: 上一个页面的名称
 
-**paramter**: 通过paramter您可以获得上一个页面传递的参数。
+**parameter**: 通过parameter您可以获得上一个页面传递的参数。
 
 
 

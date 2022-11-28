@@ -1,19 +1,19 @@
-﻿namespace FantasyMvvm.FantasyPageRegist.Impl;
+﻿namespace FantasyMvvm.FantasyPageRegister.Impl;
 
 using FantasyMvvm.FantasyModels;
 
-public class DefaultPageRegist:IPageRegist
+public class DefaultPageRegister:IPageRegister
 {
     private readonly IServiceCollection serviceCollection;
 
     private  Dictionary<string, PageModel> instance;
 
-    public DefaultPageRegist(IServiceCollection serviceCollection)
+    public DefaultPageRegister(IServiceCollection serviceCollection)
     {
         this.serviceCollection = serviceCollection;
         this.instance=new Dictionary<string, PageModel>();
     }
-    public void Regist<P, PM>(string name)
+    public void Register<P, PM>(string name)
     {
 
         if(string.IsNullOrEmpty(name))
@@ -41,7 +41,7 @@ public class DefaultPageRegist:IPageRegist
         return this.instance.GetValueOrDefault(name);
     }
 
-    public void Regist<P>(string name)
+    public void Register<P>(string name)
     {
         if (string.IsNullOrEmpty(name))
         {

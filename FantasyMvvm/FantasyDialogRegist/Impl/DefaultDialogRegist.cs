@@ -2,14 +2,14 @@
 using System.Xml.Linq;
 using FantasyMvvm.FantasyModels;
 
-namespace FantasyMvvm.FantasyDialogRegist.Impl
+namespace FantasyMvvm.FantasyDialogRegister.Impl
 {
-	public class DefaultDialogRegist:IDialogRegist
+	public class DefaultDialogRegister:IDialogRegister
     {
         private Dictionary<string, DialogModel> instance;
 
         private readonly IServiceCollection _serviceCollection;
-		public DefaultDialogRegist(IServiceCollection serviceCollection)
+		public DefaultDialogRegister(IServiceCollection serviceCollection)
         {
             this._serviceCollection = serviceCollection;
             this.instance = new Dictionary<string, DialogModel>();
@@ -20,7 +20,7 @@ namespace FantasyMvvm.FantasyDialogRegist.Impl
             return this.instance.GetValueOrDefault(name);
         }
 
-        public void Regist<P, PM>(string name)
+        public void Register<P, PM>(string name)
         {
 
             if(string.IsNullOrEmpty(name))
@@ -41,7 +41,7 @@ namespace FantasyMvvm.FantasyDialogRegist.Impl
             this._serviceCollection.AddTransient(typeof(PM));
         }
 
-        public void Regist<P>(string name)
+        public void Register<P>(string name)
         {
             if (string.IsNullOrEmpty(name))
             {

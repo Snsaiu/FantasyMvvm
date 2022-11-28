@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FantasyMvvm.FantasyModels
 {
-    public interface INavigationParamter
+    public interface INavigationParameter
     {
        void Add(string key, object value);
         object Get(string key);

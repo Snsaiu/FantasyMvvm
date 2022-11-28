@@ -43,9 +43,9 @@ namespace DemoPreview13.PageModels
         [ICommand]
         public async void ShowSummary()
         {
-            var paramter = new NavigationParamter();
-            paramter.Add("input","i am input paramter");
-           await this.dialogService.ShowPopUpDialogAsync("SummaryDialog",paramter, (x) =>
+            var parameter = new NavigationParameter();
+            parameter.Add("input","i am input parameter");
+           await this.dialogService.ShowPopUpDialogAsync("SummaryDialog",parameter, (x) =>
            {
                this.dialogService.DisplayAlert("info", x.Data.ToString(), "ok", "cancel");
 

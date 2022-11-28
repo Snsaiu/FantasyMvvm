@@ -61,7 +61,7 @@ namespace FantasyMvvm.FantasyDialogService.Impl
             return res;
         }
 
-        public async Task ShowPopUpDialogAsync(string dialogName,INavigationParamter paramter= null, Action<CloseResultModel> closeEvent = null)
+        public async Task ShowPopUpDialogAsync(string dialogName,INavigationParameter parameter= null, Action<CloseResultModel> closeEvent = null)
         {
             if (string.IsNullOrEmpty(dialogName))
             {
@@ -80,7 +80,7 @@ namespace FantasyMvvm.FantasyDialogService.Impl
                 {
 
                     p.BindingContext = dialogModel;
-                    dialogModel.OnParamter(paramter);
+                    dialogModel.OnParameter(parameter);
                     dialogModel.OnCloseEvent += (r) =>
                     {
                         closeEvent?.Invoke(r);

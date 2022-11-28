@@ -2,8 +2,8 @@
 
 using FantasyMvvm.FantasyModels;
 using FantasyMvvm.FantasyPageKeepContainer;
-using FantasyMvvm.FantasyPageRegist;
-using FantasyMvvm.FantasyViewRegist;
+using FantasyMvvm.FantasyPageRegister;
+using FantasyMvvm.FantasyViewRegister;
 
 public class DefaultViewModelLocator: ViewModelLocatorBase
 {
@@ -40,8 +40,8 @@ public class DefaultViewModelLocator: ViewModelLocatorBase
         }
     }
 
-    public DefaultViewModelLocator(IViewRegist viewRegist,IServiceProvider provider)
-        : base(viewRegist)
+    public DefaultViewModelLocator(IViewRegister viewRegister,IServiceProvider provider)
+        : base(viewRegister)
     {
         this.provider = provider;
     }

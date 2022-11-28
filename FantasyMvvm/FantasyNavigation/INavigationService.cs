@@ -12,8 +12,8 @@ namespace FantasyMvvm.FantasyNavigation
     /// </summary>
     public interface  INavigationService
     {
-        Task NavigationToAsync(string pageName, bool hasBackButton = true, INavigationParamter paramter = null);
+        Task NavigationToAsync(string pageName, bool hasBackButton = true, INavigationParameter parameter = null);
 
-        Task NavigationToAsync(string pageName, INavigationParamter paramter = null);
+        Task NavigationToAsync(string pageName, INavigationParameter parameter = null);
     }
 }

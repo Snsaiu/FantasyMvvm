@@ -2,16 +2,16 @@
 
 using FantasyMvvm.FantasyModels;
 using FantasyMvvm.FantasyPageKeepContainer;
-using FantasyMvvm.FantasyPageRegist;
+using FantasyMvvm.FantasyPageRegister;
 
 public abstract class PageModelLocatorBase
 {
-    private readonly IPageRegist pageRegist;
+    private readonly IPageRegister pageRegister;
     private readonly IPageKeepContainer pageKeepContainer;
 
-    public PageModelLocatorBase(IPageRegist pageRegist,IPageKeepContainer pageKeepContainer)
+    public PageModelLocatorBase(IPageRegister pageRegister,IPageKeepContainer pageKeepContainer)
     {
-        this.pageRegist = pageRegist;
+        this.pageRegister = pageRegister;
         this.pageKeepContainer = pageKeepContainer;
     }
 
@@ -36,7 +36,7 @@ public abstract class PageModelLocatorBase
                 else
                 {
                    
-                    var pg = this.pageRegist.GetPageModelByName(name);
+                    var pg = this.pageRegister.GetPageModelByName(name);
                     if (pg!= null)
                     {
 
@@ -55,7 +55,7 @@ public abstract class PageModelLocatorBase
         }
         else
         {
-            var p = this.pageRegist.GetPageModelByName(name);
+            var p = this.pageRegister.GetPageModelByName(name);
             if (p != null)
             {
                 PageModelElement element = this.Parse(p);

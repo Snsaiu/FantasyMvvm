@@ -9,7 +9,7 @@ namespace FantasyMvvm
 {
     using CommunityToolkit.Mvvm.ComponentModel;
     using FantasyMvvm.FantasyLocator;
-    using FantasyMvvm.FantasyPageRegist;
+    using FantasyMvvm.FantasyPageRegister;
 
     using Microsoft.Maui.Controls;
     using Microsoft.Maui.Controls.Internals;

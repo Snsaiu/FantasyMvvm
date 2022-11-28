@@ -1,15 +1,15 @@
-﻿namespace FantasyMvvm.FantasyPageRegist;
+﻿namespace FantasyMvvm.FantasyPageRegister;
 
 using FantasyMvvm.FantasyModels;
 
 /// <summary>
 /// 注册页面接口，应该为单例模式
 /// </summary>
-public interface IPageRegist
+public interface IPageRegister
 {
-     void Regist<P, PM>(string name);
+     void Register<P, PM>(string name);
 
-    void Regist<P>(string name);
+    void Register<P>(string name);
 
     PageModel GetPageModelByName(string name);
 

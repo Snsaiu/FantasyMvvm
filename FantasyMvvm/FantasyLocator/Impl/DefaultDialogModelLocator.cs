@@ -1,4 +1,4 @@
-using FantasyMvvm.FantasyDialogRegist;
+using FantasyMvvm.FantasyDialogRegister;
 using FantasyMvvm.FantasyModels;
 
 namespace FantasyMvvm.FantasyLocator.Impl;
@@ -8,7 +8,7 @@ public class DefaultDialogModelLocator:DialogModelLocatorBase
 
     private readonly IServiceProvider _provider;
     
-    public DefaultDialogModelLocator(IDialogRegist dialogRegist,IServiceProvider provider) : base(dialogRegist)
+    public DefaultDialogModelLocator(IDialogRegister dialogRegister,IServiceProvider provider) : base(dialogRegister)
     {
         this._provider = provider;
     }

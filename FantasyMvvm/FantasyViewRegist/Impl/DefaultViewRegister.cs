@@ -5,15 +5,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FantasyMvvm.FantasyViewRegist.Impl
+namespace FantasyMvvm.FantasyViewRegister.Impl
 {
-    public class DefaultViewRegist : IViewRegist
+    public class DefaultViewRegister : IViewRegister
     {
         private readonly IServiceCollection serviceCollection;
 
         private Dictionary<string, ViewModel> instance;
 
-        public DefaultViewRegist(IServiceCollection serviceCollection)
+        public DefaultViewRegister(IServiceCollection serviceCollection)
         {
             this.serviceCollection = serviceCollection;
             this.instance = new Dictionary<string, ViewModel>();
@@ -24,7 +24,7 @@ namespace FantasyMvvm.FantasyViewRegist.Impl
             return this.instance.GetValueOrDefault(name);
         }
 
-        public void Regist<V, VM>(string name)
+        public void Register<V, VM>(string name)
         {
             if(string.IsNullOrEmpty(name))
             {
@@ -44,7 +44,7 @@ namespace FantasyMvvm.FantasyViewRegist.Impl
             this.serviceCollection.AddTransient(typeof(VM));
         }
 
-        public void Regist<V>(string name)
+        public void Register<V>(string name)
         {
             if (string.IsNullOrEmpty(name))
             {

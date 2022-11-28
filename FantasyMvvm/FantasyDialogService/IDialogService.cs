@@ -15,7 +15,7 @@ namespace FantasyMvvm.FantasyDialogService
 
         public Task DisplayAlert(string title, string message, string cancel);
 
-        public Task ShowPopUpDialogAsync(string dialogName,INavigationParamter paramter=null,Action<CloseResultModel> closeEvent=null);
+        public Task ShowPopUpDialogAsync(string dialogName,INavigationParameter parameter=null,Action<CloseResultModel> closeEvent=null);
 
 
         public Task<bool> DisplayAlert(string title, string message, string accept, string cancel);

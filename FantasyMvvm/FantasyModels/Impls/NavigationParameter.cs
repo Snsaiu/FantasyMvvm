@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FantasyMvvm.FantasyModels.Impls
 {
-    public class NavigationParamter : INavigationParamter
+    public class NavigationParameter : INavigationParameter
     {
 
         private Dictionary<string,object> _params=new Dictionary<string, object>();

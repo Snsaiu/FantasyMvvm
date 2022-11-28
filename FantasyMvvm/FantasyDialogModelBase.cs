@@ -18,10 +18,10 @@ namespace FantasyMvvm
 		public abstract event OnCloseDelegate OnCloseEvent;
 
 		/// <summary>
-		/// when init it will be called.you can get paramter in here
+		/// when init it will be called.you can get parameter in here
 		/// </summary>
-		/// <param name="paramter"></param>
-		public abstract void OnParamter(INavigationParamter paramter);
+		/// <param name="parameter"></param>
+		public abstract void OnParameter(INavigationParameter parameter);
 	}
 }
 

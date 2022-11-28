@@ -1,21 +1,21 @@
 ﻿using System;
-using FantasyMvvm.FantasyDialogRegist;
+using FantasyMvvm.FantasyDialogRegister;
 using FantasyMvvm.FantasyModels;
 
 namespace FantasyMvvm.FantasyLocator
 {
 	public abstract class DialogModelLocatorBase
 	{
-		private readonly IDialogRegist _dialogRegist;
+		private readonly IDialogRegister _dialogRegister;
 		
-		public DialogModelLocatorBase(IDialogRegist dialogRegist)
+		public DialogModelLocatorBase(IDialogRegister dialogRegister)
 		{
-			this._dialogRegist = dialogRegist;
+			this._dialogRegister = dialogRegister;
 		}
 
 		public DialogModelElement GetDialogModelElementByName(string name)
 		{
-			var v = this._dialogRegist.GetDialogModelByName(name);
+			var v = this._dialogRegister.GetDialogModelByName(name);
 			if (v != null)
 			{
 				DialogModelElement element = this.Parse(v);

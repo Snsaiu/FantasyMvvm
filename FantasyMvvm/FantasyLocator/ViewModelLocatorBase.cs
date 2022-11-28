@@ -1,5 +1,5 @@
 ﻿using FantasyMvvm.FantasyModels;
-using FantasyMvvm.FantasyViewRegist;
+using FantasyMvvm.FantasyViewRegister;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,16 +10,16 @@ namespace FantasyMvvm.FantasyLocator
 {
     public abstract class ViewModelLocatorBase
     {
-        private readonly IViewRegist viewRegist;
+        private readonly IViewRegister viewRegister;
 
-        public ViewModelLocatorBase(IViewRegist viewRegist)
+        public ViewModelLocatorBase(IViewRegister viewRegister)
         {
-            this.viewRegist = viewRegist;
+            this.viewRegister = viewRegister;
         }
 
         public ViewModelElement GetViewModelElementByName(string name)
         {
-            var v=this.viewRegist.GetViewModelByName(name);
+            var v=this.viewRegister.GetViewModelByName(name);
             if (v!=null)
             {
                 ViewModelElement element = this.Parse(v);

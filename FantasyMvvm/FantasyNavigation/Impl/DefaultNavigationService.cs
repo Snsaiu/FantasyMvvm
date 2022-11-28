@@ -17,14 +17,14 @@ namespace FantasyMvvm.FantasyNavigation.Impl
             this.pageModelLocator = pageModelLocatorBase;
         }
 
-        public async Task NavigationToAsync(string pageName, bool hasBackButton = true, INavigationParamter paramter = null)
+        public async Task NavigationToAsync(string pageName, bool hasBackButton = true, INavigationParameter parameter = null)
         {
 
             PageModelElement pm = getPageModelElementByName(pageName);
 
             try
             {
-                setPageAndPageModelEvent(paramter, pm);
+                setPageAndPageModelEvent(parameter, pm);
                 var page = (pm.Page as Page);
                 NavigationPage.SetHasBackButton(page, hasBackButton);
                 if (hasBackButton)
@@ -64,17 +64,17 @@ namespace FantasyMvvm.FantasyNavigation.Impl
 
 
 
-        public async Task NavigationToAsync(string pageName, INavigationParamter paramter = null)
+        public async Task NavigationToAsync(string pageName, INavigationParameter parameter = null)
         {
             PageModelElement pm = getPageModelElementByName(pageName);
 
-            setPageAndPageModelEvent(paramter, pm);
+            setPageAndPageModelEvent(parameter, pm);
             var page = (pm.Page as Page);
             await (Application.Current.MainPage as NavigationPage).PushAsync(page, true);
         }
 
 
-        private void setPageAndPageModelEvent(INavigationParamter paramter, PageModelElement pm)
+        private void setPageAndPageModelEvent(INavigationParameter parameter, PageModelElement pm)
         {
             if (pm.Page is Page page)
             {
@@ -84,12 +84,12 @@ namespace FantasyMvvm.FantasyNavigation.Impl
 
                     page.NavigatedFrom += (s, e) =>
                     {
-                        navigationAware.OnNavigatedFrom(Application.Current.MainPage.Title, paramter);
+                        navigationAware.OnNavigatedFrom(Application.Current.MainPage.Title, parameter);
                     };
 
                     page.NavigatedTo += (s, e) =>
                     {
-                        navigationAware.OnNavigatedTo(Application.Current.MainPage.Title, paramter);
+                        navigationAware.OnNavigatedTo(Application.Current.MainPage.Title, parameter);
                     };
                 }
 

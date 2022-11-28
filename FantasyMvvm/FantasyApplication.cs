@@ -14,15 +14,15 @@ namespace FantasyMvvm
     using FantasyMvvm.FantasyNavigation.Impl;
     using FantasyMvvm.FantasyPageKeepContainer;
     using FantasyMvvm.FantasyPageKeepContainer.Impl;
-    using FantasyMvvm.FantasyPageRegist;
-    using FantasyMvvm.FantasyPageRegist.Impl;
+    using FantasyMvvm.FantasyPageRegister;
+    using FantasyMvvm.FantasyPageRegister.Impl;
     using FantasyMvvm.FantasyRegionManager;
     using FantasyMvvm.FantasyRegionManager.Impl;
-    using FantasyMvvm.FantasyViewRegist;
-    using FantasyMvvm.FantasyViewRegist.Impl;
+    using FantasyMvvm.FantasyViewRegister;
+    using FantasyMvvm.FantasyViewRegister.Impl;
     using CommunityToolkit.Maui;
-    using FantasyMvvm.FantasyDialogRegist;
-    using FantasyMvvm.FantasyDialogRegist.Impl;
+    using FantasyMvvm.FantasyDialogRegister;
+    using FantasyMvvm.FantasyDialogRegister.Impl;
 
     public static class FantasyApplication
     {
@@ -31,9 +31,9 @@ namespace FantasyMvvm
             //builder.UseMauiCommunityToolkit();
 
            builder.Services.AddSingleton<FantasyRegionLocator.RegionLocatorBase>(new FantasyRegionLocator.Impl.DefaultRegionLocator());
-            builder.Services.AddSingleton<IPageRegist>(new DefaultPageRegist(builder.Services));
-            builder.Services.AddSingleton<IViewRegist>(new DefaultViewRegist(builder.Services));
-            builder.Services.AddSingleton<IDialogRegist>(new DefaultDialogRegist(builder.Services));
+            builder.Services.AddSingleton<IPageRegister>(new DefaultPageRegister(builder.Services));
+            builder.Services.AddSingleton<IViewRegister>(new DefaultViewRegister(builder.Services));
+            builder.Services.AddSingleton<IDialogRegister>(new DefaultDialogRegister(builder.Services));
 
             builder.Services.AddTransient<PageModelLocatorBase, DefaultPageModelLocator>();
             builder.Services.AddTransient<ViewModelLocatorBase, DefaultViewModelLocator>();

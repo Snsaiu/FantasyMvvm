@@ -2,7 +2,7 @@
 
 using FantasyMvvm.FantasyModels;
 using FantasyMvvm.FantasyPageKeepContainer;
-using FantasyMvvm.FantasyPageRegist;
+using FantasyMvvm.FantasyPageRegister;
 
 public class DefaultPageModelLocator: PageModelLocatorBase
 {
@@ -36,8 +36,8 @@ public class DefaultPageModelLocator: PageModelLocatorBase
         }
     }
 
-    public DefaultPageModelLocator(IPageRegist pageRegist,IServiceProvider provider,IPageKeepContainer pageKeepContainer)
-        : base(pageRegist,pageKeepContainer)
+    public DefaultPageModelLocator(IPageRegister pageRegister,IServiceProvider provider,IPageKeepContainer pageKeepContainer)
+        : base(pageRegister,pageKeepContainer)
     {
         this.provider = provider;
     }
