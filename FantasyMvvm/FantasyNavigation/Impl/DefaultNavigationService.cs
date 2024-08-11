@@ -30,13 +30,9 @@ namespace FantasyMvvm.FantasyNavigation.Impl
                 if (hasBackButton)
                 {
                     await (Application.Current.MainPage as NavigationPage).PushAsync(page, true);
-
                 }
                 else
                 {
-
-
-
                     await Application.Current.MainPage.Navigation.PushAsync(page);
 
                     var pages = Application.Current.MainPage.Navigation.NavigationStack.ToList();
