@@ -8,7 +8,7 @@
 
 ### 使用条件
 
-项目基于MAUI （最新）版本开发，您可能需要保证您的MAUI是.net7
+项目基于MAUI （最新）版本开发，您可能需要保证您的MAUI是.net8
 
 ### 安装
 
@@ -62,15 +62,11 @@ protected override string CreateShell()
 
 #### 属性绑定
 
-属性绑定采用微软的 Microsoft.Toolkit.Mvvm 。因此您可以使用如下语法：
+属性绑定采用微软的 CommunityToolkit.Mvvm 。因此您可以使用如下语法：
 
 ```c#
-private string _title;
-public string title
-{
-    get { return _title; }
-    set { _title = value; OnPropertyChanged(); }
-}
+[ObservableObject]
+private string title;
 ```
 
 #### 命令绑定

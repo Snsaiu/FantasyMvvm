@@ -90,8 +90,11 @@ namespace FantasyMvvm.FantasyDialogService.Impl
                 }
               await Application.Current.MainPage.ShowPopupAsync(p);
             }
-
-            throw new Exception("注册的类型不是popup类型");
+            else
+            {
+                throw new Exception("注册的类型不是popup类型");
+            }
+            
         }
     }
 }

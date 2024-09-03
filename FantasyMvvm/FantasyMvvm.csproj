@@ -17,12 +17,14 @@
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<RepositoryUrl>https://github.com/Snsaiu/FantasyMvvm</RepositoryUrl>
 		<PackageTags>maui;mvvm</PackageTags>
-		<AssemblyVersion>1.0.0.1</AssemblyVersion>
-		<FileVersion>1.0.0.1</FileVersion>
+		<AssemblyVersion>1.0.1.8</AssemblyVersion>
+		<FileVersion>1.0.1.8</FileVersion>
 		<PackageProjectUrl>https://github.com/Snsaiu/FantasyMvvm</PackageProjectUrl>
 		<Copyright>MIT</Copyright>
 		<Description>FantasyMVVM是一个针对MAUI而设计的MVVM模式框架。当前是预览版。可能会有未知的bug。正式项目中谨慎使用！！！</Description>
-		<Version>1.0.1.3-preview</Version>
+		<Version>1.0.1.8-preview</Version>
+		<Title>FantasyMvvm</Title>
+		<PackAsTool>False</PackAsTool>
 	</PropertyGroup>
 
 	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
