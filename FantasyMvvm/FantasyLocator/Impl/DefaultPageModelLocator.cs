@@ -31,8 +31,7 @@ public class DefaultPageModelLocator: PageModelLocatorBase
         }
         catch (Exception e)
         {
-            Console.WriteLine(e);
-            throw new Exception(e.Message);
+            throw;
         }
     }
 
