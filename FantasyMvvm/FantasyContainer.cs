@@ -12,7 +12,13 @@ namespace FantasyMvvm
         private static ServiceProvider _serviceProvider;
 
         private static IServiceCollection serviceCollection;
-      
+
+
+        public static MauiAppBuilder UseRegisterServices(this MauiAppBuilder builder, Action<IServiceCollection> action)
+        {
+            action(builder.Services);
+            return builder;
+        }
 
         public static MauiAppBuilder UseGetProvider(this MauiAppBuilder builder)
         {

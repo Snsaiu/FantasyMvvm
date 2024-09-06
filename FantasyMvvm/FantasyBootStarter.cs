@@ -32,8 +32,6 @@ namespace FantasyMvvm
             string pageName = this.CreateShell();
             if (string.IsNullOrWhiteSpace(pageName))
             {
-
-
                 throw new ArgumentNullException($"pageName 不能为空");
             }
 
@@ -49,9 +47,7 @@ namespace FantasyMvvm
             {
 
                 this.MainPage = new NavigationPage(page);
-
-
-
+                
                 page.BindingContext = pm.PageModel;
                 if (pm.PageModel is INavigationAware navigationAware)
                 {

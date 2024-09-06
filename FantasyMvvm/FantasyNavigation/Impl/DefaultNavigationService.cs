@@ -2,6 +2,7 @@
 using FantasyMvvm.FantasyModels;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -33,7 +34,15 @@ namespace FantasyMvvm.FantasyNavigation.Impl
                 }
                 else
                 {
-                    await Application.Current.MainPage.Navigation.PushAsync(page);
+                    try
+                    {
+                        await Application.Current.MainPage.Navigation.PushAsync(page);
+                    }
+                    catch (Exception e)
+                    {
+                        throw;
+                    }
+                 
 
                     var pages = Application.Current.MainPage.Navigation.NavigationStack.ToList();
                     foreach (var pg in pages)
