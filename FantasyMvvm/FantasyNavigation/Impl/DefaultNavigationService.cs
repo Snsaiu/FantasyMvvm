@@ -36,6 +36,7 @@ namespace FantasyMvvm.FantasyNavigation.Impl
                 {
                     try
                     {
+                        page.Parent = null;
                         await Application.Current.MainPage.Navigation.PushAsync(page);
                     }
                     catch (Exception e)
