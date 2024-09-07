@@ -23,8 +23,6 @@ namespace FantasyMvvm.FantasyNavigation.Impl
 
             PageModelElement pm = getPageModelElementByName(pageName);
 
-            try
-            {
                 setPageAndPageModelEvent(parameter, pm);
                 var page = (pm.Page as Page);
                 NavigationPage.SetHasBackButton(page, hasBackButton);
@@ -34,17 +32,10 @@ namespace FantasyMvvm.FantasyNavigation.Impl
                 }
                 else
                 {
-                    try
-                    {
-                        page.Parent = null;
-                        await Application.Current.MainPage.Navigation.PushAsync(page);
-                    }
-                    catch (Exception e)
-                    {
-                        throw;
-                    }
-                 
-
+             
+                     page.Parent = null;
+                     Application.Current.MainPage=new NavigationPage(page);
+       
                     var pages = Application.Current.MainPage.Navigation.NavigationStack.ToList();
                     foreach (var pg in pages)
                     {
@@ -55,17 +46,6 @@ namespace FantasyMvvm.FantasyNavigation.Impl
                         }
                     }
                 }
-
-            }
-            catch (Exception e)
-            {
-
-                throw;
-            }
-
-  
-
-
         }
 
 
