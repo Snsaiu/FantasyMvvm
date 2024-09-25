@@ -13,6 +13,7 @@ namespace FantasyMvvm.FantasyNavigation.Impl
     {
         private PageModelLocatorBase pageModelLocator = null;
 
+        private WeakEventManager _eventManager = new WeakEventManager();
         public DefaultNavigationService(PageModelLocatorBase pageModelLocatorBase)
         {
             this.pageModelLocator = pageModelLocatorBase;
@@ -23,7 +24,7 @@ namespace FantasyMvvm.FantasyNavigation.Impl
 
             PageModelElement pm = getPageModelElementByName(pageName);
 
-                setPageAndPageModelEvent(parameter, pm);
+                SetPageAndPageModelEvent(parameter, pm);
                 var page = (pm.Page as Page);
                 NavigationPage.SetHasBackButton(page, hasBackButton);
                 if (hasBackButton)
@@ -54,33 +55,39 @@ namespace FantasyMvvm.FantasyNavigation.Impl
         {
             PageModelElement pm = getPageModelElementByName(pageName);
 
-            setPageAndPageModelEvent(parameter, pm);
+            SetPageAndPageModelEvent(parameter, pm);
             var page = (pm.Page as Page);
             await (Application.Current.MainPage as NavigationPage).PushAsync(page, true);
         }
 
 
-        private void setPageAndPageModelEvent(INavigationParameter parameter, PageModelElement pm)
+        
+        
+        private static void SetPageAndPageModelEvent(INavigationParameter parameter, PageModelElement pm)
         {
             if (pm.Page is Page page)
             {
                 page.BindingContext = pm.PageModel;
                 if (pm.PageModel is INavigationAware navigationAware)
                 {
-
-                    page.NavigatedFrom += (s, e) =>
+                    
+                    void OnPageOnNavigatedFrom(object s, NavigatedFromEventArgs e)
                     {
-                        navigationAware.OnNavigatedFrom(Application.Current.MainPage.Title, parameter);
-                    };
-
-                    page.NavigatedTo += (s, e) =>
+                        var source = s?.GetType().Name ?? string.Empty;
+                        navigationAware.OnNavigatedFrom(source, parameter);
+                    }
+                    
+                    void OnPageOnNavigatedTo(object s, NavigatedToEventArgs e)
                     {
-                        navigationAware.OnNavigatedTo(Application.Current.MainPage.Title, parameter);
-                    };
+                        var source = s?.GetType().Name ?? string.Empty;
+                        navigationAware.OnNavigatedTo(source, parameter);
+                    }
+                        
+                    page.NavigatedFrom -= OnPageOnNavigatedFrom;
+                    page.NavigatedTo -= OnPageOnNavigatedTo;
+                    page.NavigatedFrom += OnPageOnNavigatedFrom;
+                    page.NavigatedTo += OnPageOnNavigatedTo;
                 }
-
-
-
             }
 
             else
