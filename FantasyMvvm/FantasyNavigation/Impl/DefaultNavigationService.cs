@@ -61,23 +61,28 @@ namespace FantasyMvvm.FantasyNavigation.Impl
         {
             if (pm.Page is Page page)
             {
-                if (page.BindingContext is not null)
-                    return;
-
                 page.BindingContext = pm.PageModel;
                 if (pm.PageModel is INavigationAware navigationAware)
                 {
-                    page.NavigatedTo += (s, e) =>
+                    void OnPageOnNavigatedTo(object s, NavigatedToEventArgs e)
                     {
                         string source = s?.GetType().Name ?? string.Empty;
                         navigationAware.OnNavigatedTo(source, parameter);
-                    };
+                        page.NavigatedTo-= OnPageOnNavigatedTo;
+                    }
 
-                    page.NavigatedFrom += (s, e) =>
+                    page.NavigatedTo -= OnPageOnNavigatedTo;
+                    page.NavigatedTo += OnPageOnNavigatedTo;
+
+                    void OnPageOnNavigatedFrom(object s, NavigatedFromEventArgs e)
                     {
                         string source = s?.GetType().Name ?? string.Empty;
                         navigationAware.OnNavigatedFrom(source, parameter);
-                    };
+                        page.NavigatedFrom -= OnPageOnNavigatedFrom;
+                    }
+
+                    page.NavigatedFrom -= OnPageOnNavigatedFrom;
+                    page.NavigatedFrom += OnPageOnNavigatedFrom;
                 }
             }
 
