@@ -1,11 +1,6 @@
 ﻿using FantasyMvvm.FantasyNavigation.Impl;
 using FantasyMvvm.FantasyPageKeepContainer;
 using FantasyMvvm.FantasyPageRegister;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FantasyMvvm
 {
@@ -18,11 +13,11 @@ namespace FantasyMvvm
             this.mauiAppBuilder = mauiAppBuilder;
 
         }
-      public  void AddPageRegister(IPageRegister pageRegister)
+        public void AddPageRegister(IPageRegister pageRegister)
         {
-            if (this.checkRegister<IPageRegister>())
+            if (checkRegister<IPageRegister>())
             {
-                this.mauiAppBuilder.Services.AddSingleton<IPageRegister>();
+                mauiAppBuilder.Services.AddSingleton<IPageRegister>();
             }
             else
             {
@@ -32,9 +27,9 @@ namespace FantasyMvvm
 
         public void AddNavigation(FantasyNavigation.INavigationService navigationService)
         {
-            if (this.checkRegister<FantasyNavigation.INavigationService>())
+            if (checkRegister<FantasyNavigation.INavigationService>())
             {
-                this.mauiAppBuilder.Services.AddTransient<FantasyNavigation.INavigationService,DefaultNavigationService>();
+                mauiAppBuilder.Services.AddSingleton<FantasyNavigation.INavigationService, DefaultNavigationService>();
             }
             else
             {
@@ -46,10 +41,10 @@ namespace FantasyMvvm
         public void AddKeepContainer(IPageKeepContainer container)
         {
 
-            if (this.checkRegister<IPageKeepContainer> ())
+            if (checkRegister<IPageKeepContainer>())
             {
 
-                this.mauiAppBuilder.Services.AddSingleton<IPageKeepContainer>(container);
+                mauiAppBuilder.Services.AddSingleton<IPageKeepContainer>(container);
             }
             else
             {
@@ -68,15 +63,11 @@ namespace FantasyMvvm
         /// <returns>如果已经注册返回false，否则返回true</returns>
         private bool checkRegister<T>()
         {
-           var provider=  this.mauiAppBuilder.Services.BuildServiceProvider();
-           var obj=  provider.GetRequiredService<T>();
-            if (obj==null)
-            {
-                return true;
-            }
-            return false;
+            ServiceProvider provider = mauiAppBuilder.Services.BuildServiceProvider();
+            T obj = provider.GetRequiredService<T>();
+            return obj == null;
         }
-       
+
 
     }
 }

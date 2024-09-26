@@ -1,10 +1,4 @@
 ﻿using FantasyMvvm.FantasyLocator;
-using Microsoft.Maui.Controls.PlatformConfiguration.WindowsSpecific;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FantasyMvvm
 {
@@ -26,17 +20,17 @@ namespace FantasyMvvm
         {
             //this.On<Microsoft.Maui.Controls.PlatformConfiguration.Windows>().SetImageDirectory("Assets");
 
-            this.ControlHandler(); ;
-            this.pageModelLocator = FantasyContainer.GetRequiredService<PageModelLocatorBase>();
+            ControlHandler(); ;
+            pageModelLocator = FantasyContainer.GetRequiredService<PageModelLocatorBase>();
 
-            string pageName = this.CreateShell();
+            string pageName = CreateShell();
             if (string.IsNullOrWhiteSpace(pageName))
             {
                 throw new ArgumentNullException($"pageName 不能为空");
             }
 
 
-            var pm = this.pageModelLocator.GetPageModelElementByName(pageName);
+            PageModelElement pm = pageModelLocator.GetPageModelElementByName(pageName);
 
 
             if (pm == null)
@@ -46,22 +40,22 @@ namespace FantasyMvvm
             if (pm.Page is Microsoft.Maui.Controls.Page page)
             {
 
-                this.MainPage = new NavigationPage(page);
-                
+                MainPage = new NavigationPage(page);
+
                 page.BindingContext = pm.PageModel;
-                if (pm.PageModel is INavigationAware navigationAware)
-                {
+                //if (pm.PageModel is INavigationAware navigationAware)
+                //{
 
-                    page.NavigatedFrom += (s, e) =>
-                    {
-                        navigationAware.OnNavigatedFrom(Microsoft.Maui.Controls.Application.Current.MainPage.Title, null);
-                    };
+                //    page.NavigatedFrom += (s, e) =>
+                //    {
+                //        navigationAware.OnNavigatedFrom(Microsoft.Maui.Controls.Application.Current.MainPage.Title, null);
+                //    };
 
-                    page.NavigatedTo += (s, e) =>
-                    {
-                        navigationAware.OnNavigatedTo(Microsoft.Maui.Controls.Application.Current.MainPage.Title, null);
-                    };
-                }
+                //    page.NavigatedTo += (s, e) =>
+                //    {
+                //        navigationAware.OnNavigatedTo(Microsoft.Maui.Controls.Application.Current.MainPage.Title, null);
+                //    };
+                //}
 
 
             }
@@ -70,14 +64,14 @@ namespace FantasyMvvm
 
         public FantasyBootStarter()
         {
-           this.createMainPage();
+            createMainPage();
         }
 
         protected override Window CreateWindow(IActivationState? activationState)
         {
-            if (this.MainPage==null)
+            if (MainPage == null)
             {
-               this.createMainPage();
+                createMainPage();
             }
             return base.CreateWindow(activationState);
         }

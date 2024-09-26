@@ -1,22 +1,15 @@
 ﻿using FantasyMvvm.FantasyLocator;
 using FantasyMvvm.FantasyModels;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FantasyMvvm.FantasyNavigation.Impl
 {
     public class DefaultNavigationService : INavigationService
     {
-        private PageModelLocatorBase pageModelLocator = null;
+        private readonly PageModelLocatorBase _pageModelLocator;
 
-        private WeakEventManager _eventManager = new WeakEventManager();
         public DefaultNavigationService(PageModelLocatorBase pageModelLocatorBase)
         {
-            this.pageModelLocator = pageModelLocatorBase;
+            _pageModelLocator = pageModelLocatorBase;
         }
 
         public async Task NavigationToAsync(string pageName, bool hasBackButton = true, INavigationParameter parameter = null)
@@ -24,29 +17,29 @@ namespace FantasyMvvm.FantasyNavigation.Impl
 
             PageModelElement pm = getPageModelElementByName(pageName);
 
-                SetPageAndPageModelEvent(parameter, pm);
-                var page = (pm.Page as Page);
-                NavigationPage.SetHasBackButton(page, hasBackButton);
-                if (hasBackButton)
-                {
-                    await (Application.Current.MainPage as NavigationPage).PushAsync(page, true);
-                }
-                else
-                {
-             
-                     page.Parent = null;
-                     Application.Current.MainPage=new NavigationPage(page);
-       
-                    var pages = Application.Current.MainPage.Navigation.NavigationStack.ToList();
-                    foreach (var pg in pages)
-                    {
-                        if (page.GetType() != pg.GetType())
-                        {
-                            Application.Current.MainPage.Navigation.RemovePage(pg);
+            SetPageAndPageModelEvent(parameter, pm);
+            Page page = (pm.Page as Page);
+            NavigationPage.SetHasBackButton(page, hasBackButton);
+            if (hasBackButton)
+            {
+                await (Application.Current.MainPage as NavigationPage).PushAsync(page, true);
+            }
+            else
+            {
 
-                        }
+                page.Parent = null;
+                Application.Current.MainPage = new NavigationPage(page);
+
+                List<Page> pages = Application.Current.MainPage.Navigation.NavigationStack.ToList();
+                foreach (Page pg in pages)
+                {
+                    if (page.GetType() != pg.GetType())
+                    {
+                        Application.Current.MainPage.Navigation.RemovePage(pg);
+
                     }
                 }
+            }
         }
 
 
@@ -56,37 +49,35 @@ namespace FantasyMvvm.FantasyNavigation.Impl
             PageModelElement pm = getPageModelElementByName(pageName);
 
             SetPageAndPageModelEvent(parameter, pm);
-            var page = (pm.Page as Page);
+            Page page = (pm.Page as Page);
+
             await (Application.Current.MainPage as NavigationPage).PushAsync(page, true);
         }
 
 
-        
-        
-        private static void SetPageAndPageModelEvent(INavigationParameter parameter, PageModelElement pm)
+
+
+        private void SetPageAndPageModelEvent(INavigationParameter parameter, PageModelElement pm)
         {
             if (pm.Page is Page page)
             {
+                if (page.BindingContext is not null)
+                    return;
+
                 page.BindingContext = pm.PageModel;
                 if (pm.PageModel is INavigationAware navigationAware)
                 {
-                    
-                    void OnPageOnNavigatedFrom(object s, NavigatedFromEventArgs e)
+                    page.NavigatedTo += (s, e) =>
                     {
-                        var source = s?.GetType().Name ?? string.Empty;
-                        navigationAware.OnNavigatedFrom(source, parameter);
-                    }
-                    
-                    void OnPageOnNavigatedTo(object s, NavigatedToEventArgs e)
-                    {
-                        var source = s?.GetType().Name ?? string.Empty;
+                        string source = s?.GetType().Name ?? string.Empty;
                         navigationAware.OnNavigatedTo(source, parameter);
-                    }
-                        
-                    page.NavigatedFrom -= OnPageOnNavigatedFrom;
-                    page.NavigatedTo -= OnPageOnNavigatedTo;
-                    page.NavigatedFrom += OnPageOnNavigatedFrom;
-                    page.NavigatedTo += OnPageOnNavigatedTo;
+                    };
+
+                    page.NavigatedFrom += (s, e) =>
+                    {
+                        string source = s?.GetType().Name ?? string.Empty;
+                        navigationAware.OnNavigatedFrom(source, parameter);
+                    };
                 }
             }
 
@@ -103,14 +94,9 @@ namespace FantasyMvvm.FantasyNavigation.Impl
                 throw new ArgumentNullException($"pageName 不能为空");
             }
 
-            var pm = this.pageModelLocator.GetPageModelElementByName(pageName);
+            PageModelElement pm = _pageModelLocator.GetPageModelElementByName(pageName);
 
-            if (pm == null)
-            {
-                throw new NullReferenceException($"{pageName}的视图实例为空！请检查是否注册！");
-            }
-
-            return pm;
+            return pm ?? throw new NullReferenceException($"{pageName}的视图实例为空！请检查是否注册！");
         }
 
     }

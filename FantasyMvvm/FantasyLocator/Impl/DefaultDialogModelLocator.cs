@@ -3,14 +3,14 @@ using FantasyMvvm.FantasyModels;
 
 namespace FantasyMvvm.FantasyLocator.Impl;
 
-public class DefaultDialogModelLocator:DialogModelLocatorBase
+public class DefaultDialogModelLocator : DialogModelLocatorBase
 {
 
     private readonly IServiceProvider _provider;
-    
-    public DefaultDialogModelLocator(IDialogRegister dialogRegister,IServiceProvider provider) : base(dialogRegister)
+
+    public DefaultDialogModelLocator(IDialogRegister dialogRegister, IServiceProvider provider) : base(dialogRegister)
     {
-        this._provider = provider;
+        _provider = provider;
     }
 
     protected override DialogModelElement Parse(DialogModel dialogModel)
@@ -18,10 +18,10 @@ public class DefaultDialogModelLocator:DialogModelLocatorBase
         try
         {
 
-            var dialogType = this._provider.GetRequiredService(dialogModel.Popup);
-            if(dialogModel.PM!=null)
+            object dialogType = _provider.GetRequiredService(dialogModel.Popup);
+            if (dialogModel.PM != null)
             {
-                var dialogModelType = this._provider.GetRequiredService(dialogModel.PM);
+                object dialogModelType = _provider.GetRequiredService(dialogModel.PM);
                 DialogModelElement element = new DialogModelElement()
                 {
                     Dialog = dialogType,
@@ -37,8 +37,8 @@ public class DefaultDialogModelLocator:DialogModelLocatorBase
                 };
                 return element;
             }
-            
-          
+
+
 
         }
         catch (Exception e)

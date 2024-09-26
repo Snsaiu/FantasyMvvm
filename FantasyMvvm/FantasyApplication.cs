@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-
-namespace FantasyMvvm
+﻿namespace FantasyMvvm
 {
+    using CommunityToolkit.Maui;
+
+    using FantasyMvvm.FantasyDialogRegister;
+    using FantasyMvvm.FantasyDialogRegister.Impl;
     using FantasyMvvm.FantasyDialogService;
     using FantasyMvvm.FantasyDialogService.Impl;
     using FantasyMvvm.FantasyLocator;
@@ -20,9 +17,6 @@ namespace FantasyMvvm
     using FantasyMvvm.FantasyRegionManager.Impl;
     using FantasyMvvm.FantasyViewRegister;
     using FantasyMvvm.FantasyViewRegister.Impl;
-    using CommunityToolkit.Maui;
-    using FantasyMvvm.FantasyDialogRegister;
-    using FantasyMvvm.FantasyDialogRegister.Impl;
 
     public static class FantasyApplication
     {
@@ -30,28 +24,28 @@ namespace FantasyMvvm
         {
             //builder.UseMauiCommunityToolkit();
 
-           builder.Services.AddSingleton<FantasyRegionLocator.RegionLocatorBase>(new FantasyRegionLocator.Impl.DefaultRegionLocator());
+            builder.Services.AddSingleton<FantasyRegionLocator.RegionLocatorBase>(new FantasyRegionLocator.Impl.DefaultRegionLocator());
             builder.Services.AddSingleton<IPageRegister>(new DefaultPageRegister(builder.Services));
             builder.Services.AddSingleton<IViewRegister>(new DefaultViewRegister(builder.Services));
             builder.Services.AddSingleton<IDialogRegister>(new DefaultDialogRegister(builder.Services));
 
-            builder.Services.AddTransient<PageModelLocatorBase, DefaultPageModelLocator>();
-            builder.Services.AddTransient<ViewModelLocatorBase, DefaultViewModelLocator>();
-            builder.Services.AddTransient<DialogModelLocatorBase, DefaultDialogModelLocator>();
+            builder.Services.AddSingleton<PageModelLocatorBase, DefaultPageModelLocator>();
+            builder.Services.AddSingleton<ViewModelLocatorBase, DefaultViewModelLocator>();
+            builder.Services.AddSingleton<DialogModelLocatorBase, DefaultDialogModelLocator>();
 
 
-            builder.Services.AddTransient<IRegionManager, DefaultRegionManager>();
+            builder.Services.AddSingleton<IRegionManager, DefaultRegionManager>();
 
             builder.Services.AddSingleton<IPageKeepContainer>(new DefaultPageKeepContainer());
-            builder.Services.AddTransient<FantasyNavigation.INavigationService, DefaultNavigationService>();
-            builder.Services.AddTransient<IDialogService, DefaultDialogService>();
+            builder.Services.AddSingleton<FantasyNavigation.INavigationService, DefaultNavigationService>();
+            builder.Services.AddSingleton<IDialogService, DefaultDialogService>();
 
 
 
             return builder;
         }
 
-        public static MauiAppBuilder UseFantasyApplication(this MauiAppBuilder builder,Action<FantasyApplicationOption> option)
+        public static MauiAppBuilder UseFantasyApplication(this MauiAppBuilder builder, Action<FantasyApplicationOption> option)
         {
             FantasyApplicationOption _option = new FantasyApplicationOption(builder);
 
